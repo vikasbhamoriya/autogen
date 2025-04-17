@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital AI Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .chat-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .msg {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .msg strong {
+            color: #2c3e50;
+        }
+
+        .msg:nth-child(odd) {
+            background-color: #ecf0f1;
+        }
+
+        .msg:nth-child(even) {
+            background-color: #dff9fb;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Hospital AI Assistant</h2>
+
+    <form action="/hospital-chat" method="POST">
+        <input type="text" name="message" placeholder="Enter your message..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if conversation %}
+        <div class="chat-box">
+            <h3>Conversation:</h3>
+            {% for msg in conversation %}
+                <div class="msg">
+                    <strong>{{ msg.split(':')[0] }}:</strong> {{ msg.split(':', 1)[1] }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</body>
+</html>
